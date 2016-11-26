@@ -16,6 +16,8 @@ import me.juancrg90.postalcodes.api.GeoNamesClient;
 import me.juancrg90.postalcodes.api.GeoNamesSevice;
 import me.juancrg90.postalcodes.api.PostalCodes;
 import me.juancrg90.postalcodes.entities.PostalCode;
+import me.juancrg90.postalcodes.fragments.PostalCodesListFragment;
+import me.juancrg90.postalcodes.fragments.PostalCodesListFragmentListener;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     GeoNamesClient geoNamesClient = new GeoNamesClient();
     GeoNamesSevice geoNamesSevice;
 
+    PostalCodesListFragmentListener fragmentListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         geoNamesSevice = geoNamesClient.getGeoNamesService();
+
+        PostalCodesListFragment fragment = (PostalCodesListFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentList);
+
+        fragment.setRetainInstance(true);
+        fragmentListener = (PostalCodesListFragment) fragment;
     }
 
     @OnClick(R.id.buttonSubmit)
@@ -55,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
                 for(int i = 0; i < postalCodeList.size(); i++) {
                     Log.v("res", postalCodeList.get(i).getPlaceName());
+                    fragmentListener.action(postalCodeList.get(i).getPlaceName());
+
                 }
 
             }
@@ -62,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<PostalCodes> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Something went wrong: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-
-
             }
         });
     }

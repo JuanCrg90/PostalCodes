@@ -27,5 +27,14 @@
         android:layout_below="@+id/editPostalCode"
         android:layout_centerHorizontal="true"/>
 
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragmentList"
+        android:layout_below="@+id/buttonSubmit"
+        android:name="me.juancrg90.postalcodes.fragments.PostalCodesListFragment"
+        tools:layout="@layout/fragment_postal_codes_list" />
+
+
 
 </RelativeLayout>
