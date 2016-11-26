@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
     @OnClick(R.id.buttonSubmit)
     public void handleSubmitClick() {
         String country = "MX";
-        String maxRows = "2";
-        String postalcode = "37419";
+        String maxRows = "10";
+        String postalcode = editPostalCode.getText().toString();
         String username = "JuanCrg90";
         Call<PostalCodes> call = geoNamesSevice.listPostalCodes(country, maxRows, postalcode, username);
 
@@ -62,12 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
                 List<PostalCode> postalCodeList = response.body().getPostalCodes();
 
-                for(int i = 0; i < postalCodeList.size(); i++) {
-                    Log.v("res", postalCodeList.get(i).getPlaceName());
-                    fragmentListener.action(postalCodeList.get(i).getPlaceName());
-
-                }
-
+                fragmentListener.addToList(postalCodeList);
             }
 
             @Override
