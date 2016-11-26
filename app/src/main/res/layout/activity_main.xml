@@ -10,8 +10,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="me.juancrg90.postalcodes.MainActivity">
 
-    <TextView
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/editPostalCode"
+        android:hint="@string/main.editPostalCode"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/buttonSubmit"
+        android:text="@string/main.buttonSubmit"
+        android:layout_below="@+id/editPostalCode"
+        android:layout_centerHorizontal="true"/>
+
+
 </RelativeLayout>

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PostalCodes</string>
+    <string name="main.editPostalCode">Postal Code</string>
+    <string name="main.buttonSubmit">Submit</string>
 </resources>
